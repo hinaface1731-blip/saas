@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#172722"><title>Фаза — сметы на электромонтаж</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body>
+<header><div class="shell bar"><a class="brand" href="/" aria-label="Фаза, главная"><b class="bolt">ϟ</b>Фаза<span class="brand-sub">Сметы электрика</span></a><div class="top-actions"><button class="nav-btn" id="plan">Тариф</button><button class="outline dark" id="account">Войти</button></div></div></header>
+<main class="shell">
+  <section class="hero"><div><div class="eyebrow"><i></i> Рабочее пространство</div><h1>Смета на электрику</h1><p>Посчитайте работы на замере и отправьте заказчику одну ссылку.</p></div><canvas id="scheme" width="600" height="220" aria-hidden="true"></canvas></section>
+  <nav class="tabs" aria-label="Рабочее пространство"><button data-tab="editor" aria-current="page">Редактор</button><button data-tab="prices">Прайс-лист</button><button data-tab="archive">Мои сметы</button></nav>
+  <section id="editor" class="workspace"><div class="stack">
+    <section class="panel"><div class="panel-head"><h2>Объект</h2><span class="tag" id="draft-status">Черновик</span></div>
+      <div class="fields"><label>Название объекта<input id="title" maxlength="120" placeholder="Например, квартира на Мира"></label><label>Исполнитель<input id="author" maxlength="100" placeholder="Имя мастера или бригады"></label></div></section>
+    <section class="panel"><div class="panel-head"><h2>Работы</h2><button id="choose" class="outline small">Из прайса</button></div><div class="grid-head"><span>Наименование</span><span>Ед.</span><span>Объём</span><span>Цена, ₽</span><span>Сумма, ₽</span></div><div id="rows"></div><button id="add" class="add">＋ Добавить работу</button></section>
+    <section class="panel"><label>Комментарий заказчику<textarea id="note" maxlength="1000" rows="2" placeholder="Например, какие материалы закупает заказчик"></textarea></label></section>
+    </div><aside><div class="summary"><div class="sum-head"><span class="eyebrow">Итого по смете</span><span class="spark">ϟ</span></div><strong id="sum">0 ₽</strong><div class="sum-line"><span>Позиций работ</span><b id="count">0</b></div><button class="primary wide" id="publish">Получить ссылку <span>↗</span></button><p id="allowance">Первая смета по ссылке бесплатно.</p></div><div class="aside-actions"><button class="text-btn" id="preview">Посмотреть перед отправкой ↗</button><button class="text-btn" id="reset">Начать пустую смету</button></div></aside></section>
+  <section class="panel" id="prices" hidden><div class="panel-head"><h2>Прайс-лист</h2><button class="outline small" id="import">Импорт из таблицы</button></div><p class="muted" id="price-hint"></p><div id="price-list"></div></section>
+  <section class="panel" id="archive" hidden><div class="panel-head"><h2>Мои сметы</h2></div><div id="history"></div></section>
+  <footer><span>Фаза / Сметы электрика</span><a id="help" href="https://t.me/FoolyQ" target="_blank" rel="noreferrer">Связаться с поддержкой ↗</a></footer>
+</main>
+<dialog id="modal"><div class="dialog-head"><h2 id="modal-title"></h2><button class="x" id="close-modal" aria-label="Закрыть">×</button></div><div id="modal-body"></div><p class="error" id="error" role="alert"></p></dialog>
+<div id="toast" hidden role="status"></div>
+</body></html>

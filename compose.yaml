@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      COOKIE_SECURE: "1"
+      TRUST_PROXY: "1"
+      SALES_TELEGRAM: ${SALES_TELEGRAM:-FoolyQ}
+    volumes:
+      - estimates:/data
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on: [app]
+    ports: ["80:80", "443:443"]
+    environment:
+      DOMAIN: ${DOMAIN:?Укажите домен в .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - proxy_config:/config
+volumes:
+  estimates:
+  certificates:
+  proxy_config:
